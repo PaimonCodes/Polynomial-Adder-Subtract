@@ -3,7 +3,8 @@
 
 class polynomial;
 
-class polynomial_node {
+class polynomial_node 
+{
  public:
    polynomial_node();
    polynomial_node(const int& a);
@@ -16,7 +17,8 @@ class polynomial_node {
    friend polynomial;
 };
 
-class polynomial {
+class polynomial 
+{
  public:
    polynomial();
    ~polynomial();

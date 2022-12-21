@@ -8,7 +8,8 @@ polynomial_node::polynomial_node(const int& a) : coefficient(a), exponent(0), ne
 
 polynomial_node::polynomial_node(const int& a, const int& b) : coefficient(a), exponent(b), next(nullptr) {}
 
-void polynomial::prepend(const int& data) {
+void polynomial::prepend(const int& data) 
+{
     if (head == nullptr) 
     {
         head = new polynomial_node(data);
@@ -22,7 +23,8 @@ void polynomial::prepend(const int& data) {
     }
 }
 
-void polynomial::prepend(polynomial_node* node) {
+void polynomial::prepend(polynomial_node* node) 
+{
     if (head == nullptr) 
     {
         head = node;
@@ -35,7 +37,8 @@ void polynomial::prepend(polynomial_node* node) {
     }
 }
 
-void polynomial::bring_down(polynomial_node*& a, polynomial* result, int* exponent) const {
+void polynomial::bring_down(polynomial_node*& a, polynomial* result, int* exponent) const 
+{
     while (a != nullptr) 
     {
         polynomial_node* sum_node = new polynomial_node(a->coefficient, *exponent);
@@ -45,7 +48,8 @@ void polynomial::bring_down(polynomial_node*& a, polynomial* result, int* expone
     }    
 }
 
-void polynomial::perform_addition(polynomial_node*& a, polynomial_node*& b, polynomial* result, int* exponent) const {
+void polynomial::perform_addition(polynomial_node*& a, polynomial_node*& b, polynomial* result, int* exponent) const 
+{
     while (a != nullptr && b != nullptr) 
     {
         polynomial_node* sum_node = new polynomial_node(a->coefficient + b->coefficient, *exponent);
@@ -56,7 +60,8 @@ void polynomial::perform_addition(polynomial_node*& a, polynomial_node*& b, poly
     }
 }
 
-polynomial* polynomial::operator+(const polynomial& rhs) const {
+polynomial* polynomial::operator+(const polynomial& rhs) const 
+{
     polynomial* result = new polynomial;
     polynomial_node* current_node_a = head;
     polynomial_node* current_node_b = rhs.head;
@@ -82,7 +87,8 @@ polynomial* polynomial::operator+(const polynomial& rhs) const {
     }
 }
 
-void polynomial::subtract_trailing_subtrahend(polynomial_node*& b, polynomial* result, int* exponent) const {
+void polynomial::subtract_trailing_subtrahend(polynomial_node*& b, polynomial* result, int* exponent) const 
+{
    while (b != nullptr) 
    {
         polynomial_node* diff_node = new polynomial_node(-(b->coefficient), *exponent);
@@ -92,7 +98,8 @@ void polynomial::subtract_trailing_subtrahend(polynomial_node*& b, polynomial* r
    }
 }
 
-void polynomial::perform_subtraction(polynomial_node*& a, polynomial_node*& b, polynomial* result, int* exponent) const {
+void polynomial::perform_subtraction(polynomial_node*& a, polynomial_node*& b, polynomial* result, int* exponent) const 
+{
     while (a != nullptr && b != nullptr) 
     {
         polynomial_node* diff_node = new polynomial_node(a->coefficient - b->coefficient, *exponent);
@@ -103,7 +110,8 @@ void polynomial::perform_subtraction(polynomial_node*& a, polynomial_node*& b, p
     }
 }
 
-polynomial* polynomial::operator-(const polynomial& rhs) const {
+polynomial* polynomial::operator-(const polynomial& rhs) const 
+{
     polynomial* result = new polynomial;
     polynomial_node* current_node_a = head;
     polynomial_node* current_node_b = rhs.head;
@@ -128,16 +136,19 @@ polynomial* polynomial::operator-(const polynomial& rhs) const {
     }
 }
 
-void polynomial::dump() {
+void polynomial::dump() 
+{
     polynomial_node* current_node = head;
-    while (current_node->next != nullptr) {
+    while (current_node->next != nullptr) 
+    {
         std::cout << current_node->coefficient << "y^" << current_node->exponent << " + "; 
         current_node = current_node->next;
     }
     std::cout << current_node->coefficient << std::endl;
 }
 
-polynomial::~polynomial() {
+polynomial::~polynomial() 
+{
     polynomial_node* current_node = head;
     while (current_node != nullptr) 
     {
