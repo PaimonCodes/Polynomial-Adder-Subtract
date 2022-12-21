@@ -1,32 +1,41 @@
 #include <sstream>
-#include "LinkedList.h"
+#include "polynomial.h"
 
-void process(const std::string& input, LinkedList* expression) {
+void process(const std::string& input, polynomial* expression) 
+{
     std::istringstream extract(input);
     std::string coefficient;
-    while(std::getline(extract, coefficient, ',')) {
-        expression->Prepend(stoi(coefficient));
+    while(std::getline(extract, coefficient, ',')) 
+    {
+        expression->prepend(stoi(coefficient));
     }
 }
 
-LinkedList* operate(const std::string& operation, const LinkedList& a, const LinkedList& b) {
-    if (operation == "a" || operation == "add") {
+polynomial* operate(const std::string& operation, const polynomial& a, const polynomial& b) 
+{
+    if (operation == "a" || operation == "add") 
+    {
         return a + b;
-    } else if (operation == "s" || operation == "subtract") {
+    } 
+    else if (operation == "s" || operation == "subtract") 
+    {
         return a - b;
-    } else {
+    } 
+    else 
+    {
         return nullptr;
     }
 }
 
-int main() {
-    LinkedList a;
+int main() 
+{
+    polynomial a;
     std::string inputA;
     std::cout << "Please enter the first polynomial [e.g., 4,5,10,2]: ";
     std::cin >> inputA;
     process(inputA, &a);
 
-    LinkedList b;
+    polynomial b;
     std::string inputB;
     std::cout << "Please enter the second polynomial [e.g., 7,9,6]: ";
     std::cin >> inputB;
@@ -36,10 +45,13 @@ int main() {
     std::cout << "Please enter operation [a]dd/[s]ubtract: ";
     std::cin >> operation;
 
-    LinkedList* result = operate(operation, a, b);
-    if (result == nullptr) {
+    polynomial* result = operate(operation, a, b);
+    if (result == nullptr) 
+    {
         std::cout << "Invalid operation." << std::endl;
-    } else {
+    } 
+    else 
+    {
         result->dump();
     }
 } 
